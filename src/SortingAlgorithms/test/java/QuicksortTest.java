@@ -1,6 +1,6 @@
-package test.java;
+package SortingAlgorithms.test.java;
 
-import main.java.Quicksort;
+import SortingAlgorithms.main.java.Quicksort;
 import org.junit.Test;
 
 /**

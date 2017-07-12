@@ -1,6 +1,6 @@
-package test.java;
+package SortingAlgorithms.test.java;
 
-import main.java.Sort;
+import SortingAlgorithms.main.java.Sort;
 import org.junit.Assert;
 
 import java.util.ArrayList;

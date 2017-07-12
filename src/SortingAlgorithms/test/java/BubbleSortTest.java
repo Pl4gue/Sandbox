@@ -1,6 +1,6 @@
-package test.java;
+package SortingAlgorithms.test.java;
 
-import main.java.BubbleSort;
+import SortingAlgorithms.main.java.BubbleSort;
 import org.junit.Test;
 
 /**
