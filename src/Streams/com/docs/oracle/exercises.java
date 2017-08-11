@@ -93,7 +93,10 @@ public class exercises {
         setAlbum();
         List<Album> favs = albums
                 .stream()
-                .filter(album -> album.tracks.stream().anyMatch(track -> track.rating >= 4))
+                .filter(album -> album
+                        .tracks
+                        .stream()
+                        .anyMatch(track -> track.rating >= 4))
                 .sorted(Comparator.comparing(a -> a.name))
                 .collect(Collectors.toList());
         favs.forEach(album -> System.out.println(album.name));
