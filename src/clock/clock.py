@@ -15,19 +15,13 @@ def window():
     lblfont.setBold(True)
     lblfont.setWeight(75)
     lbl.setFont(lblfont)
-    window.mouseReleaseEvent = onClick()
     while 1:
         reload(lbl, window, app.desktop())
-
-
-def onClick():
-    exit(0)
 
 
 def reload(label, window, screen):
     label.setText(time.strftime("%H:%M:%S"))
     window.show()
-    window.showFullScreen()
     for x in range(0, 10):
         label.setText(time.strftime("%H:%M:%S"))
         window.repaint()
