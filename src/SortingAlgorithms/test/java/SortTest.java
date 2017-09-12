@@ -4,6 +4,7 @@ import SortingAlgorithms.main.java.Sort;
 import org.junit.Assert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -14,10 +15,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class SortTest {
     static void test(Sort sortingAlgo) {
-        AtomicReference<ArrayList<Integer>> list = new AtomicReference<>(new ArrayList<>());
-        for(int i=0;i<10000;i++) {
-            list.get().add((int)(Math.random()*500));
-        }
+        AtomicReference<ArrayList<Integer>> list = new AtomicReference<>(new ArrayList<>(Arrays.asList(7,3,2,8,9)));
+//        for(int i=0;i<10000;i++) {
+//            list.get().add((int)(Math.random()*500));
+//        }
         ArrayList<String> expected = (ArrayList<String>) list.get().clone();
         Collections.sort(expected);
         sortingAlgo.sort(list.get());
