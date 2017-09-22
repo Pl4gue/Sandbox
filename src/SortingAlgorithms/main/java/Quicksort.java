@@ -41,13 +41,9 @@ public class Quicksort extends Sort {
         // Recursion
         if (low < j) {
             quicksort(numbers, low, j);
-            numbers.stream().forEach(integer -> System.out.print(integer+" "));
-            System.out.println();
         }
         if (i < high) {
             quicksort(numbers, i, high);
-            numbers.stream().forEach(integer -> System.out.print(integer+" "));
-            System.out.println();
         }
     }
 }
