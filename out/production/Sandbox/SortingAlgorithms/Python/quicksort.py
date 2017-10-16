@@ -1,7 +1,6 @@
 from arraygen import ArrayGenerator as ag
 import sys
 
-
 class QuickSort():
     arr = []
 
@@ -20,20 +19,16 @@ class QuickSort():
         while(l <= r):
             while(self.arr[l] < self.arr[pivot]):
                 l += 1
-                print("l:"+str(l))
             while(self.arr[r] > self.arr[pivot]):
                 r -= 1
-                print("r:"+str(r))
             if(l <= r):
                 self.__swap(l, r)
                 l += 1
                 r -= 1
         if(low < r):
-            print(str(arr) + "|" + str(low) + " " + str(r))
             self.sort(low, r)
         if(l < high):
-            print(str(arr) + "|" + str(r) + " " + str(high))
-            self.sort(r, high)
+            self.sort(l, high)
 
 
 class OtherQuicksort():
@@ -78,10 +73,8 @@ class OtherQuicksort():
 
 
 if __name__ == '__main__':
-    arr = ag.generate(upper=10, size=5)
-    arr=[7,3,2,8,9]
-    print(arr)
-    # sys.setrecursionlimit(1000000000)
+    arr = ag.generate(upper=1e9, size=100000)
+    sys.setrecursionlimit(1000000000)
     sortAlgo = QuickSort(arr)
     sortAlgo.sort(l=0, r=len(arr) - 1)
     print(arr)

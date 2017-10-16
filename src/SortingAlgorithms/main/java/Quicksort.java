@@ -31,7 +31,6 @@ public class Quicksort extends Sort {
             while (numbers.get(j) > pivot) {
                 j--;
             }
-
             if (i <= j) {
                 swap(numbers,i, j);
                 i++;
