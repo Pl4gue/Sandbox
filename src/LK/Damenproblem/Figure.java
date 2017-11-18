@@ -32,10 +32,10 @@ public class Figure {
         return false;
     }
 
-    protected boolean[][] beat() {
+    protected boolean[][] beat(int n) {
         boolean[][] field = new boolean[8][8];
-        for(int x=0;x<8;x++) {
-            for(int y=0;y<8;y++) {
+        for(int x=0;x<n;x++) {
+            for(int y=0;y<n;y++) {
                 if (move(x, y)) {
                     field[x][y] = true;
                 }

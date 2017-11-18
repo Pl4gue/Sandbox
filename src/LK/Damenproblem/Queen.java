@@ -20,8 +20,8 @@ public class Queen extends Figure {
         return false;
     }
 
-    public boolean isYQueenCross(int y,Figure[][] field) {
-        for(int x=0;x<8;x++) {
+    public boolean isYQueenCross(int y,Figure[][] field,int n) {
+        for(int x=0;x<n;x++) {
             if (field[x][y] == null) {
                 continue;
             }

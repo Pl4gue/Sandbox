@@ -4,7 +4,13 @@ import java.util.Arrays;
 
 public class Game {
     private Figure[][] figureField = new Figure[8][8];
+    private int fieldsize = 8;
     private int solutionCount = 1;
+
+    private void init(int size) {
+        figureField = new Figure[size][size];
+        fieldsize = size;
+    }
 
     private boolean set(int x, int y, Figure figure, Figure[][] field) {
         if (field[x][y] instanceof Figure) {
@@ -36,9 +42,9 @@ public class Game {
             }
             return true;
         }
-        for (int y = 0; y < 8; y++) {
+        for (int y = 0; y < fieldsize; y++) {
             Queen q = Queen.getInstance(x, y);
-            if (!q.isYQueenCross(y, field)
+            if (!q.isYQueenCross(y, field, fieldsize)
                     && check(field, x, y)) {
                 set(x, y, q, field);
                 dfs(x + 1, field, print);
@@ -50,8 +56,8 @@ public class Game {
     }
 
     boolean check(Figure[][] field, int X, int Y) {
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < fieldsize; y++) {
+            for (int x = 0; x < fieldsize; x++) {
                 if (field[x][y] == null) {
                     continue;
                 }
@@ -73,10 +79,10 @@ public class Game {
     }
 
     private void print() {
-        System.out.println(String.format("Solution %d:",solutionCount));
+        System.out.println(String.format("Solution %d:", solutionCount));
         solutionCount++;
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < fieldsize; y++) {
+            for (int x = 0; x < fieldsize; x++) {
                 System.out.print((figureField[x][y] == null ? "X" : figureField[x][y]) + " ");
             }
             System.out.print("\n");
@@ -86,6 +92,7 @@ public class Game {
 
     public static void main(String... args) {
         Game game = new Game();
+        game.init(8);
         game.backtracking(true);
     }
 }
