@@ -46,6 +46,6 @@ public class Figure {
 
     @Override
     public String toString() {
-        return "F";
+        return "-/-";
     }
 }
