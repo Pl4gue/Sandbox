@@ -17,7 +17,7 @@ public class SortTest {
     static void test(Sort sortingAlgo) {
         AtomicReference<ArrayList<Integer>> list = new AtomicReference<>(new ArrayList<>());
         for(int i=0;i<10000;i++) {
-            list.get().add((int)(Math.random()*1000));
+            list.get().add((int)(Math.random()*300));
         }
         ArrayList<String> expected = (ArrayList<String>) list.get().clone();
         Collections.sort(expected);

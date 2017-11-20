@@ -8,15 +8,10 @@ import java.util.ArrayList;
  */
 
 public class Quicksort extends Sort {
-    private final static int LEFT = 1;
-    private final static int RIGHT = 2;
-    private static int turn = 0;
-
     @Override
     public void sort(ArrayList<Integer> list) {
         quicksort(list,0,list.size()-1);
     }
-
 
     private void quicksort(ArrayList<Integer> numbers,int low, int high) {
         int i = low, j = high;
