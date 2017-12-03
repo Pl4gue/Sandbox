@@ -1,10 +1,10 @@
 package SortingAlgorithms.test.java;
 
 import SortingAlgorithms.main.java.Sort;
+import javafx.util.Pair;
 import org.junit.Assert;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -16,13 +16,29 @@ import java.util.concurrent.atomic.AtomicReference;
 public class SortTest {
     static void test(Sort sortingAlgo) {
         AtomicReference<ArrayList<Integer>> list = new AtomicReference<>(new ArrayList<>());
-        for(int i=0;i<10000;i++) {
+        for(int i=0;i<1000;i++) {
             list.get().add((int)(Math.random()*300));
         }
-        ArrayList<String> expected = (ArrayList<String>) list.get().clone();
+        ArrayList<Integer> expected = (ArrayList<Integer>) list.get().clone();
         Collections.sort(expected);
         sortingAlgo.sort(list.get());
-        list.get().stream().forEach(integer -> System.out.println(integer));
+        list.get().forEach(System.out::println);
+        Assert.assertEquals(expected, list.get());
+    }
+
+    public static Pair gen() {
+        AtomicReference<ArrayList<Integer>> list = new AtomicReference<>(new ArrayList<>());
+        for(int i=0;i<1000;i++) {
+            list.get().add((int)(Math.random()*300));
+        }
+        ArrayList<Integer> expected = (ArrayList<Integer>) list.get().clone();
+        Collections.sort(expected);
+        return new Pair(list, expected);
+    }
+
+    static void test(Sort sortingAlgo,AtomicReference<ArrayList<Integer>> list,ArrayList<Integer> expected) {
+        sortingAlgo.sort(list.get());
+        //list.get().forEach(System.out::println);
         Assert.assertEquals(expected, list.get());
     }
 }
