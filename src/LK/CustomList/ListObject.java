@@ -29,4 +29,9 @@ public class ListObject<E> extends Object {
     public void bind(ListObject<E> next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

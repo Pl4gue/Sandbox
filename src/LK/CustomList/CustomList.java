@@ -11,7 +11,6 @@ public class CustomList<E> implements Collection<E> {
     private int size = 0;
     private ListObject<E> first;
 
-
     @Nullable
     @Contract(pure = true)
     private ListObject<E> getLast() {
@@ -90,17 +89,28 @@ public class CustomList<E> implements Collection<E> {
         if (index > size) {
             return new NullPointerException();
         }
-        for(int i=0;i<=index;i++) {
+        for (int i = 0; i < index; i++) {
             it = it.getNext();
         }
         return it;
     }
 
     @Override
-    public boolean add(Object o) {
-        this.getLast().bind(ListObject.makeObject(size, o));
-        size++;
-        return true;
+    public boolean add(E o) {
+        if (size == 1) {
+            first.bind(ListObject.makeObject(size,o));
+            size++;
+            return true;
+        }
+        try {
+            this.getLast().bind(ListObject.makeObject(size, o));
+            size++;
+            return true;
+        } catch (NullPointerException nex) {
+            first = ListObject.makeObject(size, o);
+            size++;
+            return true;
+        }
     }
 
     @Override
