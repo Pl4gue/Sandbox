@@ -23,7 +23,7 @@ public class CustomList<E> implements Collection<E> {
 
     @Override
     public int size() {
-        return size + 1;
+        return size;
     }
 
     @Override
@@ -166,11 +166,11 @@ public class CustomList<E> implements Collection<E> {
     @Override
     public String toString() {
         ListObject<E> it = first;
-        String s = "";
+        String s = "[";
         for(int i=0;i<size;i++) {
-            s += it.toString() + ",";
+            s += it.toString()+", ";
             it = it.getNext();
         }
-        return s.substring(0, s.length() - 1);
+        return s.substring(0, s.length() - 2)+"]";
     }
 }
