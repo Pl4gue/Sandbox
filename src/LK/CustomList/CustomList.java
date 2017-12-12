@@ -15,13 +15,10 @@ public class CustomList<E> implements Collection<E> {
     @Contract(pure = true)
     private ListObject<E> getLast() {
         ListObject<E> it = first;
-        while (true) {
-            try {
-                it = it.getNext();
-            } catch (NullPointerException nex) {
-                return it == null ? null : it;
-            }
+        for(int i=0;i<size-1;i++) {
+            it = it.getNext();
         }
+        return it;
     }
 
     @Override
@@ -97,11 +94,6 @@ public class CustomList<E> implements Collection<E> {
 
     @Override
     public boolean add(E o) {
-        if (size == 1) {
-            first.bind(ListObject.makeObject(size,o));
-            size++;
-            return true;
-        }
         try {
             this.getLast().bind(ListObject.makeObject(size, o));
             size++;
@@ -175,13 +167,10 @@ public class CustomList<E> implements Collection<E> {
     public String toString() {
         ListObject<E> it = first;
         String s = "";
-        while (true) {
-            try {
-                s += it.getValue() + ",";
-                it = it.getNext();
-            } catch (NullPointerException nex) {
-                return s;
-            }
+        for(int i=0;i<size;i++) {
+            s += it.toString() + ",";
+            it = it.getNext();
         }
+        return s.substring(0, s.length() - 1);
     }
 }
