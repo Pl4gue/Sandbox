@@ -3,24 +3,24 @@
 #include <bitset>
 #include <stdlib.h>
 #include <sstream> 
+
 using namespace std;
 
 long hash128(string s) {
     unsigned int result=0;
-    unsigned int secresult=0;
     for(int i=0;i<s.length();i++) {
-        result = ((result << 5) + result) + s.at(i);
-        secresult = secresult * 31 + s.at(i);
+        result = (((result << 10) + (s.at(i) >> 5)) << 2) * s.at(i) + s.at(i);
+        result = result + (s.at(i)*32);
     }
-    // cout << result << endl;
-    bitset<24^5> bitset1{result};
-    bitset<24^5> bitset2{secresult};
-    return bitset1.to_ulong() + bitset2.to_ulong();
+    return (uint64_t) result;
+    // bitset<24^5> bitset1{result};
+    // bitset<24^5> bitset2{secresult};
+    // return bitset1.to_ulong() + bitset2.to_ulong();
 }
 
 string hashcode128(string s) {
-    int decHash=(int)(hash128(s));
-    char buffer [128];
+    int decHash=(int)(hash128(s)) * 7919;
+    char buffer [1024];
     stringstream ss;
     ss << hex << decHash; 
     string res ( ss.str() );
@@ -28,10 +28,11 @@ string hashcode128(string s) {
 }
 
 int main() {
-    cout << "Enter String to hash:" << endl;
+    cout << "Enter String to hash:";
     string hashresult="";
     string s;
     getline( cin, s );
-       hashresult = hashcode128(s);
-    cout << hashresult << endl;
+
+    hashresult = hashcode128(s);
+    cout << endl << hashresult << endl;
 }
